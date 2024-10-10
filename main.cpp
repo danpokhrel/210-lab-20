@@ -1,9 +1,10 @@
 // COMSC-210 | Lab 20 | Dan Pokhrel
 #include <iostream>
 #include <iomanip>
-
 using namespace std;
+
 const int SIZE = 3;
+const int MIN = 10000, MAX = 99999;
 
 class Chair {
 private:
@@ -12,16 +13,16 @@ private:
 public:
     // constructors
     Chair() {
+        legs = rand()%2 + 3; // between 3 and 4
+        
         prices = new double[SIZE];
         legs = 0;
         for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+            prices[i] = (rand() % (MAX-MIN+1) + MIN) / (double) 100;
     }
-    Chair(int l) {
-        prices = new double[SIZE];
+    Chair(int l, double *p) {
         legs = l;
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+        prices = p;
     }
 
     // setters and getters
@@ -59,8 +60,7 @@ int main() {
     chairPtr->print();
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair(3);
-    livingChair->setPrices(525.25, 434.34, 252.52);
+    Chair *livingChair = new Chair();
     livingChair->print();
     delete livingChair;
     livingChair = nullptr;
