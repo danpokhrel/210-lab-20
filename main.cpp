@@ -14,10 +14,8 @@ public:
     // constructors
     Chair() {
         legs = rand()%2 + 3; // between 3 and 4
-        
         prices = new double[SIZE];
-        legs = 0;
-        for (int i = 0; i < SIZE; i++)
+        for (int i = 0; i < SIZE; i++) // randomly generate prices
             prices[i] = (rand() % (MAX-MIN+1) + MIN) / (double) 100;
     }
     Chair(int l, double *p) {
@@ -60,19 +58,14 @@ int main() {
     chairPtr->print();
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair();
+    double prices[] = {525.25, 434.34, 252.52};
+    Chair *livingChair = new Chair(3, prices);
     livingChair->print();
     delete livingChair;
     livingChair = nullptr;
 
     //creating dynamic array of chair objects
     Chair *collection = new Chair[SIZE];
-    collection[0].setLegs(4);
-    collection[0].setPrices(441.41, 552.52, 663.63);
-    collection[1].setLegs(4);
-    collection[1].setPrices(484.84, 959.59, 868.68);
-    collection[2].setLegs(4);
-    collection[2].setPrices(626.26, 515.15, 757.57);
     for (int i = 0; i < SIZE; i++)
         collection[i].print();
     
